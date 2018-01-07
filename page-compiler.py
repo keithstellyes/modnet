@@ -48,7 +48,7 @@ with open(sys.argv[2], 'w') as out_file:
                                              slit1, slit2)
     lua_pattern += '\?\>'
     compiled = re.compile(lua_pattern, re.DOTALL)
-    print(lua_pattern)
+    #print(lua_pattern)
     while source != '':
         # 3 cases:
         #     next is <lua
@@ -56,7 +56,7 @@ with open(sys.argv[2], 'w') as out_file:
         #     no <lua
         match = compiled.search(source)
         if match:
-            print(source[match.start():match.end()].lstrip('<lua').rstrip('?>'))
+            #print(source[match.start():match.end()].lstrip('<lua').rstrip('?>'))
             if match.start() == 0: #<lua is next
                 write_lua(source[:match.end()].lstrip('<lua')
                                         .rstrip('?>'), out_file)
