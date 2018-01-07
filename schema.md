@@ -19,6 +19,6 @@ Thread table
 
 Post Table
 
-| PostID | ThreadID |
-|--------|----------|
-| This ID | The ID of thread connected to |
+| PostID | ThreadID | Content |
+|--------|----------|---------|
+| This ID | The ID of thread connected to | Content of the post |
