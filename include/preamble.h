@@ -1,6 +1,8 @@
 #ifndef PREAMBLE_H
 #define PREAMBLE_H
 
-void write_preamble(FILE *file);
+#include <iostream>
+
+void write_preamble();
 
 #endif

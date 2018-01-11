@@ -10,7 +10,8 @@ def write_print(s, f):
     global indent, data_ctr
     f.write(indent + 'char htmldata{}[] = '.format(data_ctr))
     f.write('{' + hexify_str(s) + '};\n')
-    f.write(indent + 'fprintf(file, "%s", htmldata{});\n'.format(data_ctr))
+    #f.write(indent + 'fprintf(file, "%s", htmldata{});\n'.format(data_ctr))
+    f.write(indent + 'std::cout << (char*) htmldata{};\n'.format(data_ctr))
     data_ctr += 1
 
 def write_lua(s, f):
@@ -23,11 +24,12 @@ def write_lua(s, f):
 
 
 source = None
-
 with open(sys.argv[1], 'r') as source_html_file:
     source = source_html_file.read()
 
-preamble = '''void write(FILE *file, lua_State *l)
+preamble = '''#ifndef COMPILED_PAGE
+#define COMPILED_PAGE
+void write(lua_State *l)
 {
     int errcode;
 '''
@@ -70,4 +72,4 @@ with open(sys.argv[2], 'w') as out_file:
         else:
             write_print(source, out_file)
             break
-    out_file.write('}')
+    out_file.write('}\n#endif /* COMPILED */')
